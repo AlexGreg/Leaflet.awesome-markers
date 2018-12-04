@@ -39,30 +39,35 @@
         },
 
         createIcon: function () {
-            var div = document.createElement('div'),
+            var div = document.createElement('span'),
                 options = this.options;
-
-            if (options.icon) {
-                div.innerHTML = this._createInner();
-            }
-
             if (options.bgPos) {
-                div.style.backgroundPosition =
+                s.style.backgroundPosition =
                     (-options.bgPos.x) + 'px ' + (-options.bgPos.y) + 'px';
             }
 
-            this._setIconStyles(div, 'icon-' + options.markerColor);
+            this._setIconStyles(div, options.markerColor);
+            if (options.icon) {
+                div.innerHTML += this._createInner();
+            }
             return div;
         },
 
         _createInner: function() {
             var iconClass, iconSpinClass = "", iconColorClass = "", iconColorStyle = "", options = this.options;
-
-            if(options.icon.slice(0,options.prefix.length+1) === options.prefix + "-") {
+            var preIcon = options.icon.slice(0,options.prefix.length+1);
+            var fontAwesomePrefixes = new Array('fa', 'fas', 'fab', 'far', 'fal');
+            if(preIcon === options.prefix + "-") {
                 iconClass = options.icon;
             } else {
-                iconClass = options.prefix + "-" + options.icon;
+                if(fontAwesomePrefixes.includes(options.prefix)) {
+                  iconClass = 'fa-'+options.icon;
+                } else {
+                  iconClass = options.prefix + "-" + options.icon;
+                }
             }
+            
+            iconClass += " fa-stack-1x"
 
             if(options.spin && typeof options.spinClass === "string") {
                 iconSpinClass = options.spinClass;
@@ -88,13 +93,21 @@
                 anchor = L.point(options.shadowAnchor || options.iconAnchor);
             } else {
                 anchor = L.point(options.iconAnchor);
+                img.className = 'fa fa-map-marker fa-4x '
             }
 
             if (!anchor && size) {
                 anchor = size.divideBy(2, true);
             }
 
-            img.className = 'awesome-marker-' + name + ' ' + options.className;
+            if(name.includes('#')) {
+              img.className += 'awesome-marker ' + options.className;
+              img.style.color = name;
+            } else if(name === 'shadow') {
+              img.className += 'awesome-marker-' + name + ' ' + options.className;
+            } else {
+              img.className += 'awesome-marker-icon-' + name + ' ' + options.className;
+            }
 
             if (anchor) {
                 img.style.marginLeft = (-anchor.x) + 'px';

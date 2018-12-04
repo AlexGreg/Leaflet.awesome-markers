@@ -1,6 +1,6 @@
 {
-  "name": "leaflet.awesome-markers",
-  "version": "2.0.4",
+  "name": "leaflet.fawesome-markers",
+  "version": "2.0.5",
   "description": "Leaflet Awesome Markers - allows you to display custom icons easily using Leaflet",
   "main": "dist/leaflet.awesome-markers.js",
   "directories": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sigma-geosistemas/Leaflet.awesome-markers.git"
+    "url": "git+https://github.com/alexgreg/Leaflet.awesome-markers.git"
   },
   "keywords": [
     "leaflet",
@@ -21,7 +21,7 @@
   "author": "Lennard Voogdt and Sigma Geosistemas",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sigma-geosistemas/Leaflet.awesome-markers/issues"
+    "url": "https://github.com/alexgreg/Leaflet.awesome-markers/issues"
   },
-  "homepage": "https://github.com/sigma-geosistemas/Leaflet.awesome-markers#readme"
+  "homepage": "https://github.com/alexgreg/Leaflet.awesome-markers#readme"
 }
